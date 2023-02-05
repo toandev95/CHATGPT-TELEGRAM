@@ -74,7 +74,7 @@ const convs = {
         }),
         {
           text: `ChatGPT: ${prompt}`,
-          successText: `ChatGPT: ${prompt} - OK`,
+          successText: `ChatGPT: ${prompt} - Success`,
           failText: `ChatGPT: ${prompt} - Failed`,
         }
       );
