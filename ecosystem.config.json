@@ -1,0 +1,12 @@
+{
+  "apps": [
+    {
+      "name": "CHATGPT_BOT",
+      "script": "main.js",
+      "env": {
+        "BOT_TOKEN": "",
+        "OPENAI_API_KEY": ""
+      }
+    }
+  ]
+}
