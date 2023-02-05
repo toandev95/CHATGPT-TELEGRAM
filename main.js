@@ -35,7 +35,7 @@ const convs = {
     await ctx.sendChatAction("typing");
     await ctx.reply("Hãy nói điều gì đó với ChatGPT.");
 
-    log("User ID:", id);
+    log("Tele ID:", id);
   });
 
   bot.on("message", async (ctx) => {
