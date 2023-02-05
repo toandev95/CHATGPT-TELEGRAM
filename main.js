@@ -11,6 +11,7 @@ DotENV.config();
 const bot = new Telegraf(process.env.BOT_TOKEN, {
   handlerTimeout: 180000,
 });
+
 const api = new ChatGPTAPI({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -41,9 +42,11 @@ const convs = {
     const { id } = ctx.from;
     const { text: prompt } = ctx.message;
 
-    let ll = moment();
+    await ctx.sendChatAction("typing");
 
     try {
+      let ll = moment();
+
       const {
         //
         conversationId,
@@ -74,8 +77,8 @@ const convs = {
         }),
         {
           text: `ChatGPT: ${prompt}`,
-          successText: `ChatGPT: ${prompt} - Success`,
-          failText: `ChatGPT: ${prompt} - Failed`,
+          successText: `ChatGPT: ${prompt} - Xong`,
+          failText: `ChatGPT: ${prompt} - Lỗi`,
         }
       );
 
@@ -85,9 +88,12 @@ const convs = {
     } catch (error) {
       log.error(error);
 
-      await ctx.reply("Lỗi API ChatGPT, thử hỏi lại.");
+      await ctx.reply("Sự cố ChatGPT, vui lòng liên hệ @toandev");
     }
   });
 
   await bot.launch();
+
+  process.once("SIGINT", () => bot.stop("SIGINT"));
+  process.once("SIGTERM", () => bot.stop("SIGTERM"));
 })();
